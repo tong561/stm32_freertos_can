@@ -129,6 +129,7 @@ FILE __stdout;
 int fputc(int ch, FILE *f) {
   // �������͵����ַ�������1��HAL_UART_Transmit �� HAL �⴮�ڷ��ͺ�����
   HAL_UART_Transmit(&huart1,(unsigned char *) &ch,1,1000);
+
   return ch;  // ���뷵���ַ������� printf ���쳣
 }
 

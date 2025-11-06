@@ -23,6 +23,7 @@ freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h
 freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h
 freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h
 freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
+freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h
 freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 freertos_can\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
@@ -46,5 +47,6 @@ freertos_can\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 freertos_can\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 freertos_can\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 freertos_can\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+freertos_can\main.o: ../Core/Inc/can.h
 freertos_can\main.o: ../Core/Inc/usart.h
 freertos_can\main.o: ../Core/Inc/gpio.h
