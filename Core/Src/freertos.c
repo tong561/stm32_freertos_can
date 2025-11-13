@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "can.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,7 +49,8 @@
 
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
-osThreadId myTask01Handle;
+osThreadId nTaskCANSendHandle;
+osThreadId nTaskCANReceiveHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -56,7 +58,8 @@ osThreadId myTask01Handle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
-void StartTask02(void const * argument);
+void TaskCANSend(void const * argument);
+void TaskCANReceive(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -107,9 +110,13 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
-  /* definition and creation of myTask01 */
-  osThreadDef(myTask01, StartTask02, osPriorityIdle, 0, 128);
-  myTask01Handle = osThreadCreate(osThread(myTask01), NULL);
+  /* definition and creation of nTaskCANSend */
+  osThreadDef(nTaskCANSend, TaskCANSend, osPriorityLow, 0, 128);
+  nTaskCANSendHandle = osThreadCreate(osThread(nTaskCANSend), NULL);
+
+  /* definition and creation of nTaskCANReceive */
+  osThreadDef(nTaskCANReceive, TaskCANReceive, osPriorityBelowNormal, 0, 256);
+  nTaskCANReceiveHandle = osThreadCreate(osThread(nTaskCANReceive), (void*) &TaskCANReceiveParam);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -135,28 +142,61 @@ void StartDefaultTask(void const * argument)
   /* USER CODE END StartDefaultTask */
 }
 
-/* USER CODE BEGIN Header_StartTask02 */
+/* USER CODE BEGIN Header_TaskCANSend */
 /**
-* @brief Function implementing the myTask01 thread.
+* @brief Function implementing the nTaskCANSend thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartTask02 */
-void StartTask02(void const * argument)
+/* USER CODE END Header_TaskCANSend */
+void TaskCANSend(void const * argument)
 {
-  /* USER CODE BEGIN StartTask02 */
+  /* USER CODE BEGIN TaskCANSend */
   /* Infinite loop */
   for(;;)
   {
-		printf("任务1");
+     // 在这里添加 CAN 发送代码，例如：
+    uint8_t sendData[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+		if(My_CAN_Send_Data(&hcan1, 0x7f1, sendData, 8)) // 调用你自己的 CAN 发送函数
+		{
+			printf("发送失败%d",1);
+		}
 		GPIOB->ODR|=0x04;
-		//osDelay(500);
-		vTaskDelay(pdMS_TO_TICKS(500));
+    osDelay(500); // 延时 1 秒，控制发送频率
 		GPIOB->ODR&=~(0x04);
-		//osDelay(500);
-		vTaskDelay(pdMS_TO_TICKS(500));
+		osDelay(500); // 延时 1 秒，控制发送频率
   }
-  /* USER CODE END StartTask02 */
+  /* USER CODE END TaskCANSend */
+}
+
+/* USER CODE BEGIN Header_TaskCANReceive */
+/**
+* @brief Function implementing the nTaskCANReceive thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_TaskCANReceive */
+void TaskCANReceive(void const * argument)
+{
+  /* USER CODE BEGIN TaskCANReceive */
+  TaskCANReceive_t *can_r_param = (TaskCANReceive_t*)argument;
+  static CanRxFrame_t RxData;
+  /* Infinite loop */
+  for(;;)
+  {
+    if(xSemaphoreTake(can_r_param->Semaphore, portMAX_DELAY) == pdPASS)
+    {
+      xMessageBufferReceive(
+          can_r_param->MsgBuf,
+          &RxData,
+          sizeof(CanRxFrame_t),
+          pdMS_TO_TICKS(10)
+        );
+        printf("CAN Rx: ID = 0x%X, Len = %d\n", RxData.ID, RxData.Length);
+    }
+    osDelay(1);
+  }
+  /* USER CODE END TaskCANReceive */
 }
 
 /* Private application code --------------------------------------------------*/

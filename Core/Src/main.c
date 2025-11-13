@@ -93,6 +93,11 @@ int main(void)
   MX_USART1_UART_Init();
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
+	CAN_Filter_Mask_Config(&hcan1,0x0001,CAN_FILTER_FIFO0,0x7ff,0x7f0); //配置CAN1的过滤器掩码
+	
+	My_CAN1_Init();//初始化CAN1模块，并启动中断
+	CAN_FreeRTOS_Init();
+  
 
   /* USER CODE END 2 */
 

@@ -34,3 +34,17 @@ freertos_can\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 freertos_can\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 freertos_can\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 freertos_can\can.o: G:\gerenkesan\MCU_KaFa\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/freeRTOS.h
+freertos_can\can.o: ../Core/Inc/FreeRTOSConfig.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/message_buffer.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h
+freertos_can\can.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+freertos_can\can.o: ../Core/Inc/can.h

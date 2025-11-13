@@ -32,6 +32,11 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+#include "freeRTOS.h"
+#include "queue.h"
+#include "message_buffer.h"
+#include "semphr.h"
+#include "can.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

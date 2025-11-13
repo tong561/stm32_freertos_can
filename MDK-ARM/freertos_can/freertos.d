@@ -42,8 +42,12 @@ freertos_can\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 freertos_can\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 freertos_can\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 freertos_can\freertos.o: G:\gerenkesan\MCU_KaFa\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/message_buffer.h
+freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h
+freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+freertos_can\freertos.o: ../Core/Inc/can.h
+freertos_can\freertos.o: ../Core/Inc/main.h
 freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
-freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
-freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 freertos_can\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h

@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "can.h": "c"
+        "can.h": "c",
+        "message_buffer.h": "c",
+        "main.h": "c",
+        "semphr.h": "c"
     }
 }
